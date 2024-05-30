@@ -1,1 +1,2 @@
 # WordPress-Site-on-AWS
+I started by creating a VPC and defining the IPv4 CIDR, which I set as 10.0.0.0/16. After I created six different subnets in two different availability zones. Three were in eu-north-1a and the other three were in eu-north-1b. Two of those subnets were Public, with CIDR of 10.0.0.0/24 - 10.0.1.0/24 and the other four subnets were private, with CIDR of 10.0.2.0/24 - 10.0.5.0/24.
