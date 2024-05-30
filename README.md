@@ -1,2 +1,6 @@
 # WordPress-Site-on-AWS
 I started by creating a VPC and defining the IPv4 CIDR, which I set as 10.0.0.0/16. After I created six different subnets in two different availability zones. Three were in eu-north-1a and the other three were in eu-north-1b. Two of those subnets were Public, with CIDR of 10.0.0.0/24 - 10.0.1.0/24 and the other four subnets were private, with CIDR of 10.0.2.0/24 - 10.0.5.0/24.
+
+I then attached an Internet Gateway to the VPC to give it access to the internet. After I created a Public Route Table to connect the public subnets to the internet. I also created two different Private Route Tables for the private subnets in the different availability zones, so that traffic can be routed accordingly. Then I created two NAT Gateways and attached those to the two public subnets and routed them to give restricted internet access to the private subnets.
+
+Then I started making the security groups for the different resources that will be used in those subnets. I started by creating an Auto Load Balancer Security Group, which allowed traffic from ports 80 and 443 from anywhere. Then I created an SSH Security Group, which would be used for SSHing into the VPC and it only allows traffic from port 22 and my IP Address. After I created a Webserver Security Group, which would allow 
