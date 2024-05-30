@@ -9,6 +9,10 @@ After I created two different EC2 instances, one in two of the private subnets i
 
 Then, I had to make a Bastion Host instance to connect to the webservers; since they don't have public IP addresses, you have to use Bastion Host to access the web server and set up everything. The bastion host was set up in the Pub Subnet with the relevant security group to make SSH connections. After SSHing into the bastion host, I needed to connect to the web server; for that, I had to get the kep pair for the webserver into the bastion host and SSH from the bastion host into the web server; this would work since both are in the VPC and same IP range, this is another security measurement and layer, which would not allow any unauthorised access to the web server and gain access to the source code.
 
-I moved on to creating an RDS (Relational Database Service) instance with the MYSQL engine. I auto-generated the database password to ensure it wasn't easy to guess for anyone. During the setup, I applied the relevant security group again to control the incoming and outgoing traffic for the RDS and added it to the relevant VPC and subnets. After setting up the RDS, I attached it to WordPress on the web server.
+I moved on to creating an RDS (Relational Database Service) instance with the MYSQL engine. I auto-generated the database password to ensure it wasn't easy to guess for anyone. During the setup, I again applied the relevant security group to control the incoming and outgoing traffic for the RDS and added it to the relevant VPC and subnets. After setting up the RDS, I attached it to WordPress on the web server.
 
-Then, I proceeded to create an EFS (Elastic File System). After creating it, I had to assign mount targets so the EFS is in the two private subnets and assign the relevant security groups. After the setup, I had to attach the webserver so WordPress could use it.
+Then, I proceeded to create an EFS (Elastic File System). After making it, I had to assign mount targets so the EFS is in the two private subnets and assign the relevant security groups. After the setup, I had to attach the webserver so WordPress could use it.
+
+I moved on to creating an Auto Load Balancer. I created the target group, added the two EC2 instances, set up the listeners and health check, and tested out the load balancer to ensure the target group was set up properly.
+
+Lastly, I created the Auto 
